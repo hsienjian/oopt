@@ -10,6 +10,7 @@
  */
 public class Promotion {
     
+    private int promoRate;
     private String birthday;
     private String weekend;
     
