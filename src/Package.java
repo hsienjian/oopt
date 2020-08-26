@@ -13,7 +13,7 @@ public class Package {
     
     private int id;
     private String title;
-    private String [] zone = new String[5];
+    private String [] zone = {"water park","scream park","amusement park"};
     private double normalPrice;
     private double premiumPrice;
     private int party;

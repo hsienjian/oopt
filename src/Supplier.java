@@ -50,7 +50,7 @@ public class Supplier extends Personal_info{
         	System.out.println("No Product added !");
         	return false;
         }
-    } 
+    }
     public boolean deleteProduct(){
         Scanner scan = new Scanner(System.in);
         boolean isDelete = false;

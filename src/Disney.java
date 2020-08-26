@@ -210,71 +210,177 @@ public class Disney {
 		   			temp = addPackage(temp);
 		   			break;
 		   		case 2:
-		   			editPackage();
+		   			temp = editPackage(temp);
 		   			break;
 		   		case 3:
-		   			deletePackage();
+		   			deletePackage(temp);
 		    		break;
-		    	case 4:
-		   			packageDisplay();
+                                case 4:
+                                        packageDisplay(pk);
 		    		break;
-		    	case 5:
+                                case 5:
 		    		break;
 		   	}
     	}while (choice != 5);
+        
         return temp;
     }
  
     
     public static ArrayList<Package> addPackage(ArrayList<Package> pk){
         ArrayList<Package> temp = pk;
+        char confirm;
         
         String title;
-        String []zone = {"water park","scream park","amusement park"};
+        String []zone = new String[5];
         double normalPrice;
         double premiumPrice;
         int party;
         
         //ArrayList<Package> pk = new ArrayList<Package>();
-             
-        
-        
+
         System.out.println("Enter the title to check: ");
         title=scan.nextLine();
-        for(Package p : pk){ 
-        if(title != pk.getTitle()){ //to check the title exist anot
         
+        for(Package p : pk){ 
+            if(title != p.getTitle()){ //to check the title exist anot
+        
+            System.out.println("Package ID : " + p.getId());
             System.out.println("Please add the title: ");
             title = scan.nextLine();
-            pk[i].setTitle(title);
+            
             
             System.out.println("Please add the zone: ");
-            zone[i] = scan.nextLine();
-            pk[i].setZone(zone);
+            zone[3] = scan.nextLine();
+            
             
             System.out.println("Please add the normalPrice: ");
             normalPrice = scan.nextDouble();
-            pk[i].setNormalPrice(normalPrice);
+            
             
             System.out.println("Please add the premiumPrice: ");
             premiumPrice = scan.nextDouble();
-            pk[i].setPremiumPrice(premiumPrice);
+            
             
             System.out.println("Please add the party price: ");
             party = scan.nextInt();
-            pk[i].setParty(party);
             
             
-        }else{
-            System.out.println("Package exist");
-        }
-    
-        pk.add(new Package (title,zone,normalPrice,premiumPrice,party));
-        
-        temp.add(new Package(<list>));
+            System.out.println("Are you confrim to add? (Y/N) : ");
+            confirm = scan.nextLine().toUpperCase().charAt(0);
+            
+                if(confirm == 'Y'){
+                    temp.add(new Package(p.getId(),title,zone,normalPrice,premiumPrice,party));
+                    System.out.println("Successful");
+                }else{
+                    System.out.println("No Package added");
+                }
+
+            }else{
+                System.out.println("Package exist");
+            }  
+        } 
         return temp;
-    }  
+    }
+    
+    public static ArrayList<Package> editPackage(ArrayList<Package> pk){
+        ArrayList<Package> temp = pk;
+        char confirm;
+        String title;
+        String []zone = new String[5];
+        double normalPrice;
+        double premiumPrice;
+        int party;
+        
+        for(Package p : pk){ 
+            
+            System.out.println("Package ID : " + p.getId());
+            System.out.println("Please add the title: " + p.getTitle());
+            System.out.println("Please add the zone: " + p.getZone());
+            System.out.println("Please add the normalPrice: " + p.getNormalPrice());
+            System.out.println("Please add the premiumPrice: " + p.getPremiumPrice());
+            System.out.println("Please add the party price: " + p.getParty());
+            
+            
+            System.out.println("T = Title" + "\n" + "Z = Zone" + "\n"
+                                + "N = Normal Price" + "\n" + 
+                                "P = Premium Price" + "\n" + "A = Party");
+            System.out.println("Which information you want to edit? (T/Z/N/P/A)");
+            confirm = scan.nextLine().toUpperCase().charAt(0);
+        
+            if (confirm == 'T'){
+                System.out.println("Current title is : " + p.getTitle());
+                System.out.println("Please enter the new title : ");
+                title = scan.nextLine();
+                p.setTitle(title);
                 
+            }else if (confirm == 'Z'){
+                System.out.println("Current zone is " + p.getZone());
+                System.out.println("Please enter the new zone:");
+                zone[3] = scan.nextLine();
+                p.setZone(zone);
+            }else if(confirm == 'N'){
+                System.out.println("Current normal price is : " + p.getNormalPrice());
+                System.out.println("Please enter the new normal price :");
+                normalPrice = scan.nextDouble();
+                p.setNormalPrice(normalPrice);
+
+            }else if (confirm == 'P'){
+                System.out.println("Current premium price is : " + p.getPremiumPrice());
+                System.out.println("Please enter the new normal price :");
+                premiumPrice = scan.nextDouble();
+                p.setPremiumPrice(premiumPrice);
+                
+            }else if (confirm == 'A'){
+                System.out.println("Current party price is : " + p.getParty());
+                System.out.println("Please enter the new normal price :");
+                party = scan.nextInt();
+                p.setParty(party);
+                
+            }else{
+                System.out.println("Invalid character");
+                System.out.println("");
+                System.out.println("Please key in T/Z/N/P/A");
+            }
+            
+//            System.out.println("Do you confirm want to edit: ");
+//            confirm = scan.nextLine().charAt(0);
+//            
+//            
+//                temp.add(new Package(p.getId(),title,zone,normalPrice,premiumPrice,party));
+//                System.out.println("Successful edit");
+//            
+//                System.out.println("Edit unsuccessful");
+            
+        }
+            
+        return temp;
+    }
+    
+    public static ArrayList<Package> deletePackage(ArrayList<Package> pk){
+        ArrayList<Package> temp = pk;
+        int confirm;
+        
+        for(Package p : pk){
+            
+            System.out.println("Current Available Package Id: " + p.getId());
+            System.out.println("Please enter the package id to delete: " );
+            confirm = scan.nextInt();
+            
+            if(confirm == p.getId()){
+                temp.remove(p);
+            }
+            
+            
+        }
+        return pk;
+    }
+    
+    public static ArrayList<Package> packageDisplay(ArrayList<Package> pk){
+        
+        System.out.println("Package" + "\n" + pk.toString());
+        
+        return pk;
     }
     
     public static void addSupplier (){
@@ -325,6 +431,7 @@ public class Disney {
                 Supplier.setSupplier(supplier);
             }else{
                  System.out.println("Failed added !");
+                 
             }
 
         } 
