@@ -13,7 +13,7 @@ public class Package {
     
     private int id;
     private String title;
-    private String [] zone = {"water park","scream park","amusement park"};
+    private String [] zone = new String[5];
     private double normalPrice;
     private double premiumPrice;
     private int party;
@@ -211,13 +211,15 @@ public class Package {
 
    
     public String toString() {
-        
+        for(int i=0; i<zone.length; i++){
+            if(!zone[i].equals(0))
+                System.out.println("Zone : " + zone[i] ); 
+        }
         return "ID : " + id + "\n" + 
-               "Title :" + title + "\n" +
-               "Zone : " + zone + "\n" + 
-               "Normal Price : " + normalPrice + "\n" + 
-               "Premium Price : " + premiumPrice + "\n" +
-               "Party : " + party + "\n";
+           "Title :" + title + "\n" + 
+           "Normal Price : " + normalPrice + "\n" + 
+           "Premium Price : " + premiumPrice + "\n" +
+           "Party : " + party + "\n";
     }
     
    
